@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Produtos</title>
+</head>
+
+<body class="bg-gray-100">
+
+<nav class="bg-white shadow flex justify-between p-4">
+  <h1 class="text-xl font-bold text-teal-600">🐾 PetShop</h1>
+  <a href="index.html">Home</a>
+</nav>
+
+<div class="p-10">
+  <h2 class="text-2xl font-bold mb-6">Produtos</h2>
+  <div id="produtos" class="grid md:grid-cols-4 gap-6"></div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const categoriaId = params.get("categoria");
+
+async function carregarProdutos() {
+  const res = await fetch(`http://localhost:8081/api/produtos/categoria/${categoriaId}`);
+  const data = await res.json();
+
+  const div = document.getElementById("produtos");
+
+  data.forEach(p => {
+    div.innerHTML += `
+      <a href="produto.html?id=${p.id_produto}">
+        <div class="bg-white rounded-2xl shadow hover:scale-105 transition overflow-hidden">
+          <img src="${p.imagem}" class="h-48 w-full object-cover">
+          <div class="p-4">
+            <h3 class="font-bold">${p.nome}</h3>
+            <p class="text-gray-400 line-through">R$ ${p.preco}</p>
+            <p class="text-green-600 text-xl font-bold">R$ ${p.preco_desconto}</p>
+          </div>
+        </div>
+      </a>
+    `;
+  });
+}
+
+carregarProdutos();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Produto</title>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- NAV -->
+<nav class="bg-white shadow flex justify-between p-4">
+  <h1 class="text-xl font-bold text-teal-600">🐾 PetShop</h1>
+  <a href="index.html">Home</a>
+</nav>
+
+<!-- PRODUTO -->
+<div class="p-10">
+  <div class="grid md:grid-cols-2 gap-10 bg-white p-6 rounded-2xl shadow">
+
+    <!-- ESQUERDA -->
+    <div>
+      <img id="imagem" class="w-full h-96 object-cover rounded">
+
+      <!-- DESCRIÇÃO EMBAIXO -->
+      <div class="mt-4 bg-gray-50 p-4 rounded">
+        <h3 class="font-bold mb-2">📄 Descrição</h3>
+        <p id="descricao" class="text-gray-600"></p>
+      </div>
+    </div>
+
+    <!-- DIREITA -->
+    <div>
+
+      <!-- BREADCRUMB -->
+      <div class="text-sm text-gray-500 mb-2">
+        <a href="index.html" class="hover:underline">Home</a> >
+        <a href="#" id="linkCategoria" class="hover:underline">Categoria</a> >
+        <span id="breadcrumbProduto"></span>
+      </div>
+
+      <h2 id="nome" class="text-3xl font-bold mb-4"></h2>
+
+      <p id="preco" class="text-gray-400 line-through"></p>
+      <p id="precoDesconto" class="text-green-600 text-3xl font-bold"></p>
+
+      <p class="mt-4">
+        Estoque: <span id="estoque"></span>
+      </p>
+
+      <!-- QUANTIDADE -->
+      <div class="flex items-center gap-4 mt-4">
+        <button onclick="alterarQtd(-1)" class="bg-gray-200 px-3 py-1 rounded text-xl">-</button>
+        <span id="qtd" class="text-lg font-bold bg-gray-100 px-4 py-1 rounded">1</span>
+        <button onclick="alterarQtd(1)" class="bg-gray-200 px-3 py-1 rounded text-xl">+</button>
+      </div>
+
+      <button class="bg-blue-600 text-white px-6 py-3 rounded mt-4 hover:bg-blue-700">
+        🛒 Adicionar à sacola
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="p-10 bg-white mt-6">
+  <h2 class="text-xl font-bold mb-4">⭐ Avaliações</h2>
+
+  <!-- ESTRELAS (SÓ UMA VEZ AGORA) -->
+  <div id="estrelas" class="text-yellow-400 text-2xl mb-3 cursor-pointer"></div>
+
+  <textarea id="comentario"
+    placeholder="Conte o que achou do produto..."
+    class="w-full border p-3 rounded mb-3"></textarea>
+
+  <button onclick="salvarComentario()"
+    class="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600">
+    Enviar avaliação
+  </button>
+
+  <div id="listaComentarios" class="mt-6 space-y-3"></div>
+</div>
+
+<!-- RELACIONADOS -->
+<div class="p-10">
+  <h2 class="text-xl font-bold mb-4">
+    👀 Quem viu, também viu esses
+  </h2>
+
+  <div id="relacionados"
+    class="flex gap-4 overflow-x-auto"></div>
+</div>
+
+<!--------parcerias----->
+<div class="p-10 bg-white">
+
+  <h2 class="text-2xl font-bold mb-6 text-center">
+    Nossas Marcas Parceiras
+  </h2>
+
+  <div class="grid md:grid-cols-5 gap-8 items-center text-center">
+
+    <img src="https://1000logos.net/wp-content/uploads/2023/03/Whiskas-logo.png">
+
+    <img src="https://www.libertypet.co.nz/cdn/shop/files/Spike-Dog-Toys_c91c4c71-c6fc-4ee1-a87d-488ff915c20b_1200x1200.jpg?v=1756782327">
+
+    <img src="https://supersecao.pet/wp-content/uploads/2016/12/logo.png">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4T62hYlUUPoa1WStDBv91AxaMHlKtR_g0cw&s">
+
+    <img src="https://images.tcdn.com.br/img/img_prod/1191269/golden_formula_para_caes_adultos_sabor_frango_e_arroz_3_kg_487_2_5597bd34ee1e14f952e62e91af031d4f.jpg">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwocLsMS_ZbXDw-oNdwiJpsmU9hW5wCuXRvQ&s">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi03L8lRU8yduYpYEH2tMbOJr-y66jgqs12w&s">
+
+    <img src="https://images.seeklogo.com/logo-png/26/2/pedigree-logo-png_seeklogo-261892.png">
+
+    <img src="https://i2.wp.com/casestudies.insightnet.com.br/wp-content/uploads/2017/05/magnus-1.png?fit=1264%2C600&ssl=1">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVd07f4yyd0BVg9gx7yaNmoWOXMp_0TNY1bg&s">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHG5x8yf2pXj18vp7QDOTvInwEip2HWjZ9AA&s">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKlxSuwlr3iSfsqM-758YW82Bnrx0gOqT3XQ&s">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRPP8FImS0UjWjRu6u0EgdnStQ6c1EDkkuPw&s">
+
+    <img src="https://mir-s3-cdn-cf.behance.net/projects/404/b1e49a99840511.5efb9deed6d14.png">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdasU5XZnHgQwvbr1rDNUE4OSmEytd0_ZoSQ&s">
+
+
+  </div>
+
+</div>
+
+
+
+<!-- PAGAMENTOS -->
+<div class="p-10 bg-gray-100 text-center">
+
+  <h2 class="text-2xl font-bold mb-6">
+    💳 Formas de pagamento
+  </h2>
+
+  <div class="flex flex-wrap justify-center gap-6 items-center">
+
+    <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" class="h-10">
+    <img src="https://cdn-icons-png.flaticon.com/512/349/349221.png" class="h-10">
+    <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" class="h-10">
+    <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" class="h-10">
+    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041883.png" class="h-10">
+
+  </div>
+
+  <p class="text-gray-500 mt-4">
+    Aceitamos cartões, PIX, boleto e dinheiro
+  </p>
+
+</div>
+
+
+
+<!-- FOOTER COMPLETO -->
+<footer class="bg-gray-900 text-white p-10 mt-10">
+  <div class="grid md:grid-cols-4 gap-6">
+
+    <div>
+      <h3 class="font-bold text-lg mb-2">🐾 PetShop</h3>
+      <p>O melhor para seu pet com qualidade e carinho ❤️</p>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">📞 Contato</h3>
+      <p>(15) 99845-5632</p>
+      <p>petshop@email.com</p>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">📂 Categorias</h3>
+      <div id="footerCategorias"></div>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">📍 Localização</h3>
+      <p>Sorocaba - SP</p>
+      <p>Rua dos Pets, 123</p>
+    </div>
+
+  </div>
+
+  <div class="text-center mt-6 text-gray-400">
+    © 2026 PetShop - Todos os direitos reservados
+  </div>
+</footer>
+
+<script>
+const id = new URLSearchParams(window.location.search).get("id");
+let categoriaAtual = null;
+let quantidade = 1;
+
+// CARREGAR PRODUTO
+async function carregarProduto() {
+  const res = await fetch(`http://localhost:8081/api/produtos/${id}`);
+  const p = await res.json();
+
+  document.getElementById("nome").innerText = p.nome;
+  document.getElementById("descricao").innerText = p.descricao;
+  document.getElementById("preco").innerText = "R$ " + p.preco;
+  document.getElementById("precoDesconto").innerText = "R$ " + p.preco_desconto;
+  document.getElementById("imagem").src = p.imagem;
+  document.getElementById("estoque").innerText = p.qtd_estoque;
+
+  categoriaAtual = p.idCategoria;
+
+  // BREADCRUMB
+  document.getElementById("breadcrumbProduto").innerText = p.nome;
+
+  const linkCat = document.getElementById("linkCategoria");
+  linkCat.href = `produtos.html?categoria=${p.idCategoria}`;
+
+  carregarNomeCategoria(p.idCategoria);
+  carregarRelacionados();
+}
+
+// BUSCAR NOME DA CATEGORIA
+async function carregarNomeCategoria(idCategoria) {
+  const res = await fetch("http://localhost:8081/api/categorias");
+  const categorias = await res.json();
+
+  const cat = categorias.find(c => c.id_categoria == idCategoria);
+
+  if (cat) {
+    const linkCat = document.getElementById("linkCategoria");
+    linkCat.innerText = cat.nome;
+  }
+}
+
+// RELACIONADOS
+async function carregarRelacionados() {
+  const res = await fetch(`http://localhost:8081/api/produtos/categoria/${categoriaAtual}`);
+  const data = await res.json();
+
+  const div = document.getElementById("relacionados");
+  div.innerHTML = "";
+
+  data.forEach(p => {
+    div.innerHTML += `
+      <a href="produto.html?id=${p.id_produto}">
+        <div class="min-w-[200px] bg-white rounded shadow p-2 hover:scale-105 transition">
+
+          <img src="${p.imagem}" class="h-32 w-full object-cover rounded">
+
+          <p class="font-bold text-sm mt-2">${p.nome}</p>
+          <p class="text-green-600 font-bold">R$ ${p.preco_desconto}</p>
+
+        </div>
+      </a>
+    `;
+  });
+}
+
+// QUANTIDADE
+function alterarQtd(valor) {
+  quantidade += valor;
+
+  if (quantidade < 1) quantidade = 1;
+
+  document.getElementById("qtd").innerText = quantidade;
+}
+
+// ESTRELAS
+let nota = 0;
+
+function renderEstrelas() {
+  const estrelas = document.getElementById("estrelas");
+  estrelas.innerHTML = "";
+
+  for (let i = 1; i <= 5; i++) {
+    estrelas.innerHTML += `
+      <span onclick="avaliar(${i})" class="cursor-pointer">
+        ${i <= nota ? "⭐" : "☆"}
+      </span>
+    `;
+  }
+}
+
+function avaliar(n) {
+  nota = n;
+  renderEstrelas();
+}
+
+// COMENTÁRIOS
+function salvarComentario() {
+  const texto = document.getElementById("comentario").value;
+  const lista = document.getElementById("listaComentarios");
+
+  if (!texto || nota === 0) {
+    alert("Preencha o comentário e escolha as estrelas ⭐");
+    return;
+  }
+
+  lista.innerHTML += `
+    <div class="border p-4 rounded shadow-sm bg-gray-50">
+      <div class="text-yellow-400 mb-1">
+        ${"⭐".repeat(nota)}
+      </div>
+      <p class="text-gray-700">${texto}</p>
+    </div>
+  `;
+
+  document.getElementById("comentario").value = "";
+  nota = 0;
+  renderEstrelas();
+}
+
+// FOOTER CATEGORIAS
+async function carregarFooter() {
+  const res = await fetch("http://localhost:8081/api/categorias");
+  const data = await res.json();
+
+  const footer = document.getElementById("footerCategorias");
+
+  data.forEach(cat => {
+    footer.innerHTML += `
+      <p>
+        <a href="produtos.html?categoria=${cat.id_categoria}" class="hover:underline">
+          ${cat.nome}
+        </a>
+      </p>
+    `;
+  });
+}
+
+// INIT
+renderEstrelas();
+carregarProduto();
+carregarFooter();
+</script>
+
+</body>
+</html>
