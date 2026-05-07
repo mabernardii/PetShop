@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Admin - PetShop</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="bg-white shadow flex justify-between items-center px-8 py-4">
+
+  <!-- LOGO -->
+  <div class="flex items-center gap-3">
+
+    <img src="logo.png"
+         class="h-14 hover:scale-105 transition duration-300">
+
+    <div>
+      <h1 class="text-2xl font-extrabold text-teal-600">
+        PetShop
+      </h1>
+
+      <p class="text-sm text-gray-500">
+        Amor e cuidado para seu pet
+      </p>
+    </div>
+
+  </div>
+
+  <!-- BOTÃO -->
+  <a href="index.html"
+     class="bg-teal-500 text-white px-4 py-2 rounded-xl hover:bg-teal-600 transition">
+     Voltar para loja
+  </a>
+
+</nav>
+
+<!-- CONTAINER -->
+<div class="max-w-4xl mx-auto p-8">
+
+  <div class="bg-white rounded-3xl shadow-xl p-8">
+
+    <h2 class="text-3xl font-bold mb-2 text-gray-700">
+      📦 Cadastrar Produto
+    </h2>
+
+    <p class="text-gray-500 mb-8">
+      Preencha todas as informações do produto
+    </p>
+
+    <form id="formProduto" class="space-y-6">
+
+      <!-- GRID -->
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- NOME -->
+        <div>
+          <label class="block font-semibold mb-2 text-gray-700">
+            Nome do Produto
+          </label>
+
+          <input id="nome"
+                 required
+                 placeholder="Digite o nome do produto"
+                 class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400">
+        </div>
+
+        <!-- CATEGORIA -->
+        <div>
+          <label class="block font-semibold mb-2 text-gray-700">
+            Categoria
+          </label>
+
+          <select id="categoria"
+                  required
+                  class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400">
+
+            <option value="">
+              Selecione uma categoria
+            </option>
+
+          </select>
+        </div>
+
+      </div>
+
+      <!-- DESCRIÇÃO -->
+      <div>
+        <label class="block font-semibold mb-2 text-gray-700">
+          Descrição
+        </label>
+
+        <textarea id="descricao"
+                  rows="4"
+                  placeholder="Digite a descrição do produto"
+                  class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400"></textarea>
+      </div>
+
+      <!-- PETSHOP ENSINA -->
+      <div>
+        <label class="block font-semibold mb-2 text-gray-700">
+          🩺 PetShop Ensina
+        </label>
+
+        <textarea id="petshopensina"
+                  rows="4"
+                  placeholder="Dicas e informações importantes sobre o produto"
+                  class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400"></textarea>
+      </div>
+
+      <!-- PREÇOS -->
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div>
+          <label class="block font-semibold mb-2 text-gray-700">
+            Preço
+          </label>
+
+          <input id="preco"
+                 type="number"
+                 step="0.01"
+                 required
+                 placeholder="0.00"
+                 class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400">
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-2 text-gray-700">
+            Preço com Desconto
+          </label>
+
+          <input id="precoDesconto"
+                 type="number"
+                 step="0.01"
+                 required
+                 placeholder="0.00"
+                 class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400">
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-2 text-gray-700">
+            Quantidade em Estoque
+          </label>
+
+          <input id="estoque"
+                 type="number"
+                 required
+                 placeholder="0"
+                 class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400">
+        </div>
+
+      </div>
+
+      <!-- URL IMAGEM -->
+      <div>
+        <label class="block font-semibold mb-2 text-gray-700">
+          URL da Imagem
+        </label>
+
+        <input id="imagem"
+               placeholder="Cole a URL da imagem"
+               class="border border-gray-300 p-3 w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400">
+      </div>
+
+      <!-- PREVIEW -->
+      <div>
+
+        <p class="font-semibold text-gray-700 mb-3">
+          👀 Pré-visualização da imagem
+        </p>
+
+        <div class="bg-gray-100 rounded-2xl p-6 flex justify-center items-center border min-h-[300px]">
+
+          <img id="preview"
+               class="hidden h-72 object-contain rounded-xl hover:scale-105 transition duration-300">
+
+          <p id="textoPreview" class="text-gray-400">
+            A imagem aparecerá aqui
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- STATUS -->
+      <div class="flex items-center gap-3">
+
+        <input type="checkbox"
+               id="ativo"
+               checked
+               class="w-5 h-5 accent-teal-500">
+
+        <label for="ativo" class="font-semibold text-gray-700">
+          Produto ativo
+        </label>
+
+      </div>
+
+      <!-- BOTÃO -->
+      <button class="bg-teal-500 text-white w-full py-4 rounded-2xl text-lg font-bold hover:bg-teal-600 hover:scale-[1.01] transition duration-300 shadow-lg">
+        💾 Salvar Produto
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+
+
+const usuario =
+JSON.parse(localStorage.getItem("usuario"));
+
+if(!usuario){
+
+   alert("Faça login!");
+
+   window.location.href = "login.html";
+}
+
+if(usuario.role !== "ADMIN"){
+
+   alert("Acesso negado!");
+
+   window.location.href = "index.html";
+} 
+
+// CARREGAR CATEGORIAS
+async function carregarCategorias() {
+
+  const res = await fetch("http://localhost:8081/api/categorias");
+  const data = await res.json();
+
+  const select = document.getElementById("categoria");
+
+  data.forEach(c => {
+
+    select.innerHTML += `
+      <option value="${c.id_categoria}">
+        ${c.nome}
+      </option>
+    `;
+
+  });
+}
+
+// PREVIEW IMAGEM
+imagem.addEventListener("input", () => {
+
+  const preview = document.getElementById("preview");
+  const texto = document.getElementById("textoPreview");
+
+  preview.src = imagem.value;
+
+  preview.classList.remove("hidden");
+  texto.classList.add("hidden");
+});
+
+// CADASTRAR PRODUTO
+formProduto.addEventListener("submit", async e => {
+
+  e.preventDefault();
+
+  const produto = {
+
+    nome: nome.value,
+
+    descricao: descricao.value,
+
+    petshopensina: petshopensina.value,
+
+    preco: parseFloat(preco.value),
+
+    preco_desconto: parseFloat(precoDesconto.value),
+
+    imagem: imagem.value,
+
+    qtd_estoque: parseInt(estoque.value),
+
+    ativo: ativo.checked,
+
+    idCategoria: parseInt(categoria.value)
+  };
+
+  await fetch("http://localhost:8081/api/produtos", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(produto)
+  });
+
+  alert("✅ Produto cadastrado com sucesso!");
+
+  formProduto.reset();
+
+  preview.classList.add("hidden");
+  textoPreview.classList.remove("hidden");
+
+});
+
+carregarCategorias();
+</script>
+
+</body>
+</html>

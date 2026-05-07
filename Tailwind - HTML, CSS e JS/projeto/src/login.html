@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<title>Login - PetShop</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+<div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md">
+
+  <!-- LOGO -->
+  <div class="flex flex-col items-center mb-8">
+
+    <img src="logo.png"
+         class="h-24 mb-4 hover:scale-105 transition duration-300">
+
+    <h1 class="text-3xl font-extrabold text-teal-600">
+      Login PetShop
+    </h1>
+
+    <p class="text-gray-500 mt-2">
+      Entre na sua conta
+    </p>
+
+  </div>
+
+  <!-- FORM -->
+  <form id="formLogin" class="space-y-5">
+
+    <!-- EMAIL -->
+    <div>
+
+      <label class="block mb-2 font-semibold text-gray-700">
+        E-mail
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        required
+        placeholder="Digite seu e-mail"
+        class="border border-gray-300 p-3 w-full rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-teal-400">
+
+    </div>
+
+    <!-- SENHA -->
+    <div>
+
+      <label class="block mb-2 font-semibold text-gray-700">
+        Senha
+      </label>
+
+      <input
+        id="senha"
+        type="password"
+        required
+        placeholder="Digite sua senha"
+        class="border border-gray-300 p-3 w-full rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-teal-400">
+
+    </div>
+
+    <!-- BOTÃO -->
+    <button
+      class="bg-teal-500 text-white w-full py-3 rounded-2xl
+             text-lg font-bold hover:bg-teal-600
+             hover:scale-[1.01] transition duration-300 shadow-lg">
+
+      Entrar
+
+    </button>
+
+  </form>
+
+  <!-- VOLTAR -->
+  <a href="index.html"
+     class="block text-center mt-6 text-teal-600 hover:underline">
+
+     Voltar para loja
+
+  </a>
+
+</div>
+
+<script>
+
+formLogin.addEventListener("submit", async e => {
+
+  e.preventDefault();
+
+  const usuario = {
+
+    email: email.value,
+
+    senha: senha.value
+
+  };
+
+  const res = await fetch(
+    "http://localhost:8081/api/auth/login",
+    {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify(usuario)
+
+    }
+  );
+
+  const data = await res.json();
+
+  // LOGIN ERRADO
+  if(!data){
+
+    alert("E-mail ou senha inválidos!");
+    return;
+  }
+
+  // SALVAR USUÁRIO
+  localStorage.setItem(
+    "usuario",
+    JSON.stringify(data)
+  );
+
+  // ADMIN
+  if(data.role === "ADMIN"){
+
+    window.location.href = "admin.html";
+  }
+
+  // USER
+  else {
+
+    window.location.href = "index.html";
+  }
+
+});
+
+</script>
+
+</body>
+</html>

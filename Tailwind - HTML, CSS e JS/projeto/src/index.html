@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>PetShop</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- NAVBAR -->
+<nav class="bg-white shadow flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-3">
+
+  <img src="logo.png"
+       class="h-14 hover:scale-105 transition duration-300">
+
+  <div>
+    <h1 class="text-2xl font-extrabold text-teal-600">
+      PetShop
+    </h1>
+
+    <p class="text-sm text-gray-500">
+      Amor e cuidado para seu pet
+    </p>
+  </div>
+
+</div>
+
+</div>
+  <div id="menuCategorias" class="flex gap-6 font-semibold text-gray-700"></div>
+
+  <a id="btnAdmin"
+   href="admin.html"
+   class="text-sm bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">
+   Admin
+</a>
+</nav>
+
+<!-- HERO -->
+<div class="bg-gradient-to-r from-teal-500 to-emerald-500">
+
+  <div class="max-w-7xl mx-auto px-10 py-16
+              grid md:grid-cols-2 gap-10 items-center">
+
+    <!-- TEXTO -->
+    <div class="text-white">
+
+      <!-- LOGO -->
+      <div class="flex items-center gap-3">
+
+  <img src="logo.png"
+       class="h-14 hover:scale-105 transition duration-300">
+
+  <div>
+    <h1 class="text-2xl font-extrabold text-teal-600">
+      PetShop
+    </h1>
+
+    <p class="text-sm text-gray-500">
+      Amor e cuidado para seu pet
+    </p>
+  </div>
+
+      </div>
+
+       <h2 class="text-5xl font-extrabold leading-tight mb-6">
+        Tudo para o bem-estar do seu pet  🐶🐱🐟🐦
+      </h2>
+      <p class="text-xl text-emerald-50 mb-8">
+        Produtos de qualidade, conforto e diversão
+        para deixar seu melhor amigo mais feliz ❤️
+      </p>
+
+      <div class="flex gap-4">
+
+        <a href="#categorias"
+           class="bg-white text-teal-600 px-6 py-3 rounded-2xl
+                  font-bold hover:scale-105 transition">
+
+          Ver Categorias
+
+        </a>
+
+        <a href="#todosProdutos"
+           class="border border-white px-6 py-3 rounded-2xl
+                  font-bold hover:bg-white hover:text-teal-600 transition">
+
+          Ver Produtos
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- IMAGEM -->
+    <div class="flex justify-center">
+
+      <img
+        src="https://casaeconstrucao.org/wp-content/uploads/2022/03/cachorro-brincando.png"
+        class="w-full max-w-lg drop-shadow-2xl
+               hover:scale-105 transition duration-500">
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SOBRE NÓS (AGORA NO TOPO) -->
+<div class="p-10 bg-white">
+  <h2 class="text-2xl font-bold mb-4">🐾 Sobre Nós</h2>
+
+  <p class="text-gray-700 leading-relaxed">
+    Somos apaixonados por animais e criamos a PetShop com o objetivo de oferecer
+    os melhores produtos para o bem-estar do seu pet. Trabalhamos com rações de alta qualidade,
+    brinquedos, acessórios e tudo o que seu amigo precisa para viver feliz e saudável.
+    <br><br>
+    Nosso compromisso é garantir qualidade, preço justo e uma experiência incrível para nossos clientes.
+    Aqui você encontra tudo para cachorro, gato, peixe, pássaros e outros pets em um só lugar!
+  </p>
+</div>
+
+<!-- CATEGORIAS -->
+<div class="p-10">
+  <h2 class="text-2xl font-bold mb-6">Categorias</h2>
+
+  <div id="categorias" class="grid md:grid-cols-5 gap-6"></div>
+</div>
+
+<!-- PRODUTOS -->
+<div class="p-10 bg-white">
+  <h2 class="text-2xl font-bold mb-6">🔥 Produtos em destaque</h2>
+
+  <div id="todosProdutos" class="grid md:grid-cols-4 gap-6"></div>
+</div>
+
+
+<!------Vantagens-->
+<div class="p-10">
+  <h2 class="text-2xl font-bold mb-6">
+    Vantagens de comprar na PetShop
+  </h2>
+
+  <div class="grid md:grid-cols-4 gap-6">
+
+    <div class="bg-white p-6 rounded-xl shadow text-center hover:shadow-lg transition">
+      <div class="text-3xl mb-2">⏱️</div>
+      <h3 class="font-semibold">Receba em Horas</h3>
+      <p class="text-gray-500 text-sm">Confira as regras →</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow text-center hover:shadow-lg transition">
+      <div class="text-3xl mb-2">🚚</div>
+      <h3 class="font-semibold">Frete Grátis em todo Brasil</h3>
+      <p class="text-gray-500 text-sm">Confira as regras →</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow text-center hover:shadow-lg transition">
+      <div class="text-3xl mb-2">💳</div>
+      <h3 class="font-semibold">Até 3x Sem Juros</h3>
+      <p class="text-gray-500 text-sm">Confira as regras →</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow text-center hover:shadow-lg transition">
+      <div class="text-3xl mb-2">🏪</div>
+      <h3 class="font-semibold">Retire na Loja</h3>
+      <p class="text-gray-500 text-sm">Confira as regras →</p>
+    </div>
+
+  </div>
+</div>
+
+<!--------parcerias----->
+<div class="p-10 bg-white">
+
+  <h2 class="text-2xl font-bold mb-6 text-center">
+    Nossas Marcas Parceiras
+  </h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center text-center">
+
+    <img src="https://1000logos.net/wp-content/uploads/2023/03/Whiskas-logo.png"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://www.libertypet.co.nz/cdn/shop/files/Spike-Dog-Toys_c91c4c71-c6fc-4ee1-a87d-488ff915c20b_1200x1200.jpg?v=1756782327"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://supersecao.pet/wp-content/uploads/2016/12/logo.png"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4T62hYlUUPoa1WStDBv91AxaMHlKtR_g0cw&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://images.tcdn.com.br/img/img_prod/1191269/golden_formula_para_caes_adultos_sabor_frango_e_arroz_3_kg_487_2_5597bd34ee1e14f952e62e91af031d4f.jpg"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwocLsMS_ZbXDw-oNdwiJpsmU9hW5wCuXRvQ&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi03L8lRU8yduYpYEH2tMbOJr-y66jgqs12w&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://images.seeklogo.com/logo-png/26/2/pedigree-logo-png_seeklogo-261892.png"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://i2.wp.com/casestudies.insightnet.com.br/wp-content/uploads/2017/05/magnus-1.png?fit=1264%2C600&ssl=1"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVd07f4yyd0BVg9gx7yaNmoWOXMp_0TNY1bg&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHG5x8yf2pXj18vp7QDOTvInwEip2HWjZ9AA&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKlxSuwlr3iSfsqM-758YW82Bnrx0gOqT3XQ&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRPP8FImS0UjWjRu6u0EgdnStQ6c1EDkkuPw&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://mir-s3-cdn-cf.behance.net/projects/404/b1e49a99840511.5efb9deed6d14.png"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdasU5XZnHgQwvbr1rDNUE4OSmEytd0_ZoSQ&s"
+         class="h-24 w-full object-contain bg-white p-4 rounded-xl shadow-sm hover:scale-110 transition duration-300">
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- FOOTER COMPLETO -->
+<footer class="bg-gray-900 text-white p-10 mt-10">
+  <div class="grid md:grid-cols-4 gap-6">
+
+    <div>
+      <h3 class="font-bold text-lg mb-2">🐾 PetShop</h3>
+      <p>O melhor para seu pet com qualidade e carinho ❤️</p>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">📞 Contato</h3>
+      <p>(15) 99845-5632</p>
+      <p>petshop@email.com</p>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">📂 Categorias</h3>
+      <div id="footerCategorias"></div>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-2">📍 Localização</h3>
+      <p>Sorocaba - SP</p>
+      <p>Rua dos Pets, 123</p>
+    </div>
+
+  </div>
+
+  <div class="text-center mt-6 text-gray-400">
+    © 2026 PetShop - Todos os direitos reservados
+  </div>
+</footer>
+
+<script>
+const icones = {
+  cachorro: "🐶",
+  gato: "🐱",
+  peixe: "🐟",
+  passaros: "🐦",
+  pássaros: "🐦",
+  passaro: "🐦",
+  pássaro: "🐦",
+  "outros pets": "🐾"
+};
+
+const imagensCategorias = {
+  cachorro: "https://saude.abril.com.br/wp-content/uploads/2018/12/cachorro.jpg?quality=50&strip=info&w=414&h=280&crop=1",
+
+  gato: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAowaWEVRdppIjxA-EZYkQJF-XyMUaQFRNTw&s",
+
+  peixe: "https://s2.static.brasilescola.uol.com.br/be/2020/12/peixe.jpg",
+
+  passaros: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Od1jgpDXp41lbzjhW_vu0TiaQZwLIEsQsg&s",
+
+  pássaros: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Od1jgpDXp41lbzjhW_vu0TiaQZwLIEsQsg&s",
+
+  passaro: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Od1jgpDXp41lbzjhW_vu0TiaQZwLIEsQsg&s",
+
+  pássaro: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Od1jgpDXp41lbzjhW_vu0TiaQZwLIEsQsg&s",
+
+  "outros pets":
+    "https://thumbs.dreamstime.com/b/grupo-de-animais-de-estima%C3%A7%C3%A3o-junto-na-parte-dianteira-55938819.jpg"
+};
+
+// CARREGAR CATEGORIAS
+async function carregarCategorias() {
+  const res = await fetch("http://localhost:8081/api/categorias");
+  const data = await res.json();
+
+  const div = document.getElementById("categorias");
+  const menu = document.getElementById("menuCategorias");
+  const footer = document.getElementById("footerCategorias");
+
+  data.forEach(cat => {
+    const nomeLower = cat.nome.toLowerCase();
+    const icone = icones[nomeLower] || "🐾";
+
+    // CARDS
+div.innerHTML += `
+  <div class="bg-white p-6 rounded-2xl shadow text-center
+              hover:-translate-y-2 hover:scale-105
+              hover:shadow-xl transition duration-300">
+
+    <img src="${imagensCategorias[nomeLower]}"
+         class="h-24 mx-auto mb-4 object-contain
+                hover:scale-110 transition duration-300">
+
+    <h3 class="font-bold text-lg text-gray-700">
+      ${cat.nome}
+    </h3>
+
+    <a href="produtos.html?categoria=${cat.id_categoria}"
+       class="block mt-4 bg-teal-500 text-white p-2 rounded-xl
+              hover:bg-teal-600 transition">
+       Ver Produtos
+    </a>
+
+  </div>
+`;
+
+    // MENU
+    menu.innerHTML += `
+      <a href="produtos.html?categoria=${cat.id_categoria}"
+         class="hover:text-teal-600">
+         ${icone} ${cat.nome}
+      </a>
+    `;
+
+    // FOOTER (NOVO)
+    footer.innerHTML += `
+      <p>
+        <a href="produtos.html?categoria=${cat.id_categoria}"
+           class="hover:underline">
+           ${icone} ${cat.nome}
+        </a>
+      </p>
+    `;
+  });
+}
+
+// CARREGAR PRODUTOS
+async function carregarTodosProdutos() {
+  const res = await fetch("http://localhost:8081/api/produtos");
+  const data = await res.json();
+
+  const div = document.getElementById("todosProdutos");
+
+  data.forEach(p => {
+    div.innerHTML += `
+      <a href="produto.html?id=${p.id_produto}">
+        <div class="bg-white rounded-2xl shadow hover:scale-105 hover:shadow-xl transition overflow-hidden">
+
+          <img src="${p.imagem}"
+          class="h-48 w-full object-contain bg-white p-2">
+
+          <div class="p-4">
+            <h3 class="font-bold">${p.nome}</h3>
+
+            <p class="text-gray-400 line-through text-sm">
+              R$ ${p.preco}
+            </p>
+
+            <p class="text-green-600 text-xl font-bold">
+              R$ ${p.preco_desconto}
+            </p>
+          </div>
+
+        </div>
+      </a>
+    `;
+  });
+}
+
+carregarCategorias();
+carregarTodosProdutos();
+
+const usuario =
+JSON.parse(localStorage.getItem("usuario"));
+
+if(usuario?.role !== "ADMIN"){
+
+   document
+   .getElementById("btnAdmin")
+   .style.display = "none";
+}
+</script>
+
+</body>
+</html>
