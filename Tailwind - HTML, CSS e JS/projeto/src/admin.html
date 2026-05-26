@@ -12,7 +12,7 @@
 <!-- NAVBAR -->
 <nav class="bg-white shadow flex justify-between items-center px-8 py-4">
 
-  <!-- LOGO -->
+  <!-- ESQUERDA -->
   <div class="flex items-center gap-3">
 
     <img src="logo.png"
@@ -29,6 +29,27 @@
     </div>
 
   </div>
+
+  <!-- DIREITA -->
+<div class="flex items-center gap-4">
+
+  <a href="produtos-admin.html"
+     class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-600 transition">
+     📦 Produtos Cadastrados
+  </a>
+
+  <a href="usuarios.html"
+     class="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600 transition">
+     👤 Usuários
+  </a>
+
+  <a href="index.html"
+     class="bg-teal-500 text-white px-4 py-2 rounded-xl hover:bg-teal-600 transition">
+     🏠 Voltar para Loja
+  </a>
+
+</div>
+</nav>
 
   <!-- BOTÃO -->
   <a href="index.html"
@@ -200,18 +221,17 @@
       </div>
 
       <!-- BOTÃO -->
-      <button class="bg-teal-500 text-white w-full py-4 rounded-2xl text-lg font-bold hover:bg-teal-600 hover:scale-[1.01] transition duration-300 shadow-lg">
-        💾 Salvar Produto
-      </button>
+      <button type="submit"
+class="bg-teal-500 text-white w-full py-4 rounded-2xl text-lg font-bold hover:bg-teal-600 hover:scale-[1.01] transition duration-300 shadow-lg">
+
+  💾 Salvar Produto
+
+</button>
 
     </form>
 
-  </div>
-
-</div>
 
 <script>
-
 
 const usuario =
 JSON.parse(localStorage.getItem("usuario"));
@@ -219,24 +239,25 @@ JSON.parse(localStorage.getItem("usuario"));
 if(!usuario){
 
    alert("Faça login!");
-
    window.location.href = "login.html";
 }
 
 if(usuario.role !== "ADMIN"){
 
    alert("Acesso negado!");
-
    window.location.href = "index.html";
-} 
+}
 
 // CARREGAR CATEGORIAS
 async function carregarCategorias() {
 
-  const res = await fetch("http://localhost:8081/api/categorias");
+  const res =
+  await fetch("http://localhost:8081/api/categorias");
+
   const data = await res.json();
 
-  const select = document.getElementById("categoria");
+  const select =
+  document.getElementById("categoria");
 
   data.forEach(c => {
 
@@ -245,23 +266,20 @@ async function carregarCategorias() {
         ${c.nome}
       </option>
     `;
-
   });
 }
 
 // PREVIEW IMAGEM
 imagem.addEventListener("input", () => {
 
-  const preview = document.getElementById("preview");
-  const texto = document.getElementById("textoPreview");
-
   preview.src = imagem.value;
 
   preview.classList.remove("hidden");
-  texto.classList.add("hidden");
+
+  textoPreview.classList.add("hidden");
 });
 
-// CADASTRAR PRODUTO
+// SALVAR PRODUTO
 formProduto.addEventListener("submit", async e => {
 
   e.preventDefault();
@@ -276,20 +294,33 @@ formProduto.addEventListener("submit", async e => {
 
     preco: parseFloat(preco.value),
 
-    preco_desconto: parseFloat(precoDesconto.value),
+    preco_desconto:
+    parseFloat(precoDesconto.value),
 
     imagem: imagem.value,
 
-    qtd_estoque: parseInt(estoque.value),
+    qtd_estoque:
+    parseInt(estoque.value),
 
     ativo: ativo.checked,
 
-    idCategoria: parseInt(categoria.value)
+    idCategoria:
+    parseInt(categoria.value)
   };
 
-  await fetch("http://localhost:8081/api/produtos", {
+  const idEdicao =
+  formProduto.dataset.id;
 
-    method: "POST",
+  const url = idEdicao
+    ? `http://localhost:8081/api/produtos/${idEdicao}`
+    : "http://localhost:8081/api/produtos";
+
+  const metodo =
+  idEdicao ? "PUT" : "POST";
+
+  await fetch(url, {
+
+    method: metodo,
 
     headers: {
       "Content-Type": "application/json"
@@ -298,17 +329,83 @@ formProduto.addEventListener("submit", async e => {
     body: JSON.stringify(produto)
   });
 
-  alert("✅ Produto cadastrado com sucesso!");
+  alert("✅ Produto salvo com sucesso!");
 
   formProduto.reset();
 
+  delete formProduto.dataset.id;
+
   preview.classList.add("hidden");
+
   textoPreview.classList.remove("hidden");
 
+  document.querySelector("button[type='submit']").innerHTML =
+  "💾 Salvar Produto";
+
+  carregarProdutosAdmin();
 });
 
+// INIT
 carregarCategorias();
-</script>
+// PEGAR ID DA URL
+const params =
+new URLSearchParams(window.location.search);
 
-</body>
-</html>
+const id =
+params.get("id");
+
+// SE TIVER ID → CARREGA PRODUTO
+if(id){
+
+  carregarProduto(id);
+}
+
+// CARREGAR PRODUTO PARA EDIÇÃO
+async function carregarProduto(id){
+
+  const res =
+  await fetch(
+    `http://localhost:8081/api/produtos/${id}`
+  );
+
+  const p = await res.json();
+
+  nome.value = p.nome;
+
+  descricao.value = p.descricao;
+
+  petshopensina.value =
+  p.petshopensina;
+
+  preco.value = p.preco;
+
+  precoDesconto.value =
+  p.preco_desconto;
+
+  imagem.value = p.imagem;
+
+  estoque.value =
+  p.qtd_estoque;
+
+  categoria.value =
+  p.idCategoria;
+
+  ativo.checked =
+  p.ativo;
+
+  preview.src =
+  p.imagem;
+
+  preview.classList.remove("hidden");
+
+  textoPreview.classList.add("hidden");
+
+  formProduto.dataset.id = id;
+
+  document.querySelector(
+    "button[type='submit']"
+  ).innerHTML =
+  "✏️ Atualizar Produto";
+}
+
+</script>

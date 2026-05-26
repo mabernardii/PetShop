@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Usuários - PetShop</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="bg-white shadow flex justify-between items-center px-8 py-4">
+
+  <div class="flex items-center gap-3">
+
+    <img src="logo.png"
+         class="h-14">
+
+    <div>
+      <h1 class="text-2xl font-extrabold text-teal-600">
+        PetShop
+      </h1>
+
+      <p class="text-sm text-gray-500">
+        Painel de Usuários
+      </p>
+    </div>
+
+  </div>
+
+  <a href="admin.html"
+     class="bg-teal-500 text-white px-4 py-2 rounded-xl hover:bg-teal-600 transition">
+
+     Voltar
+
+  </a>
+
+</nav>
+
+<!-- CONTAINER -->
+<div class="max-w-7xl mx-auto p-8">
+
+  <!-- FORM -->
+  <div class="bg-white rounded-3xl shadow-xl p-8 mb-10">
+
+    <h2 class="text-3xl font-bold mb-6">
+      👤 Gerenciar Usuários
+    </h2>
+
+    <form id="formUsuario"
+          class="grid md:grid-cols-2 gap-6">
+
+      <input id="nome"
+             placeholder="Nome"
+             class="border p-3 rounded-xl">
+
+      <input id="email"
+             type="email"
+             placeholder="Email"
+             class="border p-3 rounded-xl">
+
+      <input id="senha"
+             type="password"
+             placeholder="Senha"
+             class="border p-3 rounded-xl">
+
+      <select id="role"
+              class="border p-3 rounded-xl">
+
+        <option value="USER">
+          USER
+        </option>
+
+        <option value="ADMIN">
+          ADMIN
+        </option>
+
+      </select>
+
+      <button type="submit"
+              class="bg-teal-500 text-white py-3 rounded-xl font-bold hover:bg-teal-600 transition md:col-span-2">
+
+        💾 Salvar Usuário
+
+      </button>
+
+    </form>
+
+  </div>
+
+  <!-- LISTA -->
+  <div>
+
+    <h2 class="text-2xl font-bold mb-6">
+      📋 Lista de Usuários
+    </h2>
+
+    <div id="listaUsuarios"
+         class="grid md:grid-cols-3 gap-6">
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+// LOGIN ADMIN
+const usuario =
+JSON.parse(localStorage.getItem("usuario"));
+
+if(!usuario){
+
+   alert("Faça login!");
+
+   window.location.href = "login.html";
+}
+
+if(usuario.role !== "ADMIN"){
+
+   alert("Acesso negado!");
+
+   window.location.href = "index.html";
+}
+
+// LISTAR
+async function carregarUsuarios(){
+
+  const res =
+  await fetch("http://localhost:8081/api/usuarios");
+
+  const data = await res.json();
+
+  const div =
+  document.getElementById("listaUsuarios");
+
+  div.innerHTML = "";
+
+  data.forEach(u => {
+
+    div.innerHTML += `
+
+      <div class="bg-white rounded-2xl shadow p-6">
+
+        <h3 class="font-bold text-xl mb-2">
+          ${u.nome}
+        </h3>
+
+        <p class="text-gray-600 mb-2">
+          ${u.email}
+        </p>
+
+        <span class="
+          ${u.role === 'ADMIN'
+            ? 'bg-red-100 text-red-600'
+            : 'bg-blue-100 text-blue-600'}
+          px-3 py-1 rounded-full text-sm font-bold">
+
+          ${u.role}
+
+        </span>
+
+        <div class="flex gap-3 mt-5">
+
+          <button
+            onclick="editarUsuario(${u.id_usuario})"
+            class="bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-500">
+
+            ✏️ Editar
+
+          </button>
+
+          <button
+            onclick="excluirUsuario(${u.id_usuario})"
+            class="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600">
+
+            🗑️ Excluir
+
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  });
+}
+
+// SALVAR
+formUsuario.addEventListener("submit", async e => {
+
+  e.preventDefault();
+
+  const usuarioObj = {
+
+    nome: nome.value,
+
+    email: email.value,
+
+    senha: senha.value,
+
+    role: role.value
+  };
+
+  const idEdicao =
+  formUsuario.dataset.id;
+
+  const url = idEdicao
+    ? `http://localhost:8081/api/usuarios/${idEdicao}`
+    : "http://localhost:8081/api/usuarios";
+
+  const metodo =
+  idEdicao ? "PUT" : "POST";
+
+  await fetch(url, {
+
+    method: metodo,
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(usuarioObj)
+  });
+
+  alert("✅ Usuário salvo!");
+
+  formUsuario.reset();
+
+  delete formUsuario.dataset.id;
+
+  document.querySelector("button[type='submit']").innerHTML =
+  "💾 Salvar Usuário";
+
+  carregarUsuarios();
+});
+
+// EDITAR
+async function editarUsuario(id){
+
+  const res =
+  await fetch(`http://localhost:8081/api/usuarios/${id}`);
+
+  const u = await res.json();
+
+  nome.value = u.nome;
+
+  email.value = u.email;
+
+  senha.value = u.senha;
+
+  role.value = u.role;
+
+  formUsuario.dataset.id = id;
+
+  document.querySelector("button[type='submit']").innerHTML =
+  "✏️ Atualizar Usuário";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+// EXCLUIR
+async function excluirUsuario(id){
+
+  const confirmar =
+  confirm("Deseja excluir este usuário?");
+
+  if(!confirmar) return;
+
+  await fetch(
+    `http://localhost:8081/api/usuarios/${id}`,
+    {
+      method: "DELETE"
+    }
+  );
+
+  alert("🗑️ Usuário excluído!");
+
+  carregarUsuarios();
+}
+
+// INIT
+carregarUsuarios();
+
+</script>
+
+</body>
+</html>

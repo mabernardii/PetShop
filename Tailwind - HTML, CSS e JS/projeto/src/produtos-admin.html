@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Produtos Admin</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="bg-white shadow flex justify-between items-center px-8 py-4">
+
+  <div class="flex items-center gap-3">
+
+    <img src="logo.png"
+         class="h-14">
+
+    <div>
+      <h1 class="text-2xl font-extrabold text-teal-600">
+        PetShop
+      </h1>
+
+      <p class="text-sm text-gray-500">
+        Amor e cuidado para seu pet
+      </p>
+    </div>
+
+  </div>
+
+  <div class="flex gap-4">
+
+    <a href="admin.html"
+       class="bg-teal-500 text-white px-4 py-2 rounded-xl hover:bg-teal-600">
+       ➕ Novo Produto
+    </a>
+
+    <a href="usuarios.html"
+       class="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600">
+       👤 Usuários
+    </a>
+
+    <a href="index.html"
+       class="bg-gray-700 text-white px-4 py-2 rounded-xl hover:bg-gray-800">
+       🏠 Loja
+    </a>
+
+  </div>
+
+</nav>
+
+<!-- CONTAINER -->
+<div class="max-w-7xl mx-auto p-8">
+
+  <div class="flex justify-between items-center mb-8">
+
+    <h2 class="text-3xl font-bold text-gray-700">
+      📦 Produtos Cadastrados
+    </h2>
+
+  </div>
+
+  <!-- PESQUISA -->
+  <input
+    id="pesquisa"
+    placeholder="Pesquisar produto..."
+    class="border border-gray-300 p-3 w-full rounded-2xl mb-8">
+
+  <!-- LISTA -->
+  <div id="listaProdutos"
+       class="grid md:grid-cols-4 gap-6">
+  </div>
+
+</div>
+
+<script>
+
+const usuario =
+JSON.parse(localStorage.getItem("usuario"));
+
+if(!usuario){
+
+  alert("Faça login!");
+
+  window.location.href = "login.html";
+}
+
+if(usuario.role !== "ADMIN"){
+
+  alert("Acesso negado!");
+
+  window.location.href = "index.html";
+}
+
+// LISTAR PRODUTOS
+async function carregarProdutosAdmin() {
+
+  const res =
+  await fetch("http://localhost:8081/api/produtos");
+
+  const data = await res.json();
+
+  const div =
+  document.getElementById("listaProdutos");
+
+  const pesquisa =
+  document.getElementById("pesquisa")
+  .value.toLowerCase();
+
+  div.innerHTML = "";
+
+  data
+  .filter(p =>
+    p.nome.toLowerCase().includes(pesquisa)
+  )
+  .forEach(p => {
+
+    div.innerHTML += `
+
+      <div class="bg-white rounded-2xl shadow p-4 hover:shadow-xl transition">
+
+        <img src="${p.imagem}"
+             class="h-48 w-full object-contain mb-4">
+
+        <h3 class="font-bold text-lg">
+          ${p.nome}
+        </h3>
+
+        <p class="text-gray-400 line-through text-sm">
+          R$ ${p.preco}
+        </p>
+
+        <p class="text-green-600 text-xl font-bold mb-4">
+          R$ ${p.preco_desconto}
+        </p>
+
+        <div class="flex gap-3">
+
+          <button
+            onclick="editarProduto(${p.id_produto})"
+            class="bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-500 transition">
+
+            ✏️ Editar
+
+          </button>
+
+          <button
+            onclick="excluirProduto(${p.id_produto})"
+            class="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition">
+
+            🗑️ Excluir
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+  });
+}
+
+// EDITAR
+function editarProduto(id){
+
+  window.location.href =
+  `admin.html?id=${id}`;
+}
+
+// EXCLUIR
+async function excluirProduto(id){
+
+  const confirmar =
+  confirm("Deseja excluir este produto?");
+
+  if(!confirmar) return;
+
+  await fetch(
+    `http://localhost:8081/api/produtos/${id}`,
+    {
+      method: "DELETE"
+    }
+  );
+
+  alert("🗑️ Produto excluído!");
+
+  carregarProdutosAdmin();
+}
+
+// PESQUISA
+pesquisa.addEventListener("input", () => {
+
+  carregarProdutosAdmin();
+
+});
+
+carregarProdutosAdmin();
+
+</script>
+
+</body>
+</html>
